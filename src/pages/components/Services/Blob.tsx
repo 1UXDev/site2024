@@ -142,7 +142,8 @@ export default function Scene() {
   return (
     <Canvas
       className={styles.blobCanvas}
-      style={{ width: "30vh", height: "30vh" }}
+      // style={{ width: "30vh", height: "30vh" }}
+      style={{ aspectRatio: "1/1", maxHeight: "50vh", maxWidth: "50vh" }}
     >
       <ambientLight intensity={1.25} />
       <pointLight position={[-3, 1, 2]} castShadow intensity={1.5} />

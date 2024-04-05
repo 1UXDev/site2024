@@ -1,36 +1,90 @@
 .servicesSection {
-  padding: 48px;
-  min-height: 90vh;
+  padding: 96px 48px;
+  min-height: 100vh;
   background: #f1f1f1;
-
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 8vh;
 }
 
+/* Hold the subnav */
 .servicesContainer {
   width: 100%;
   color: black;
   display: flex;
   flex-flow: row;
-  gap: 48px;
   justify-content: center;
+  gap: 6vw;
+  margin-bottom: 24px;
+}
+
+/* Hold the actual service content */
+.serviceContentContainer {
+  display: flex;
+  flex-flow: row-wrap;
+  gap: 6vw;
+  justify-content: center;
+  align-items: center;
+  max-width: 1440px;
+  align-self: center;
 }
 
 .sceneContainer {
   position: relative;
   display: flex;
-  flex-flow: row;
-  gap: 48px;
   justify-content: center;
   align-items: center;
+  flex: 2;
 }
 
 .serviceContent {
   color: black;
+  flex: 3;
+  max-width: 1200px;
+  min-width: 300px;
 }
 .serviceContent h2 {
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 600;
   margin-bottom: 24px;
+}
+.serviceContent p {
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  margin-bottom: 24px;
+}
+
+.learnMoreButton {
+  color: black;
+  border: none;
+  padding: 3px 12px;
+  margin-left: -12px;
+  text-align: left;
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: underline;
+  transition: background 0.3s, background-size 0.5s ease-in-out;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background-size: 0% 100%; /* Initialize background size */
+  background-position: left center; /* Position the gradient starting from the left */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+}
+
+.learnMoreButton:hover {
+  background: linear-gradient(
+    to right,
+    #c16507,
+    #dc373c,
+    #de0075,
+    #b420b6,
+    #1253eb
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 100% 100%; /* Extend the background to full width on hover */
 }

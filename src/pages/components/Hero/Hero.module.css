@@ -43,8 +43,8 @@
 }
 .heroSection h1 {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 9rem;
-  background-image: linear-gradient(
+  font-size: 10rem;
+  background: linear-gradient(
     to right bottom,
     #c16507,
     #dc373c,
