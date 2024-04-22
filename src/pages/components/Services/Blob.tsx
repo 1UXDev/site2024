@@ -1,146 +1,9 @@
-// import React, { useRef, useMemo } from "react";
-// import { Canvas, useFrame, useLoader, extend } from "@react-three/fiber";
-// import { TextureLoader } from "three/src/loaders/TextureLoader";
-// import * as THREE from "three";
-// import { createNoise3D } from "simplex-noise";
-// import { animated, useSpring } from "@react-spring/three";
-// import styles from "./Blob.module.css";
-
-// function Blob({ selectedId }) {
-//   const meshRef = useRef();
-//   const simplex = createNoise3D();
-//   const textureLoader = new TextureLoader();
-//   const displacementMap = textureLoader.load("DisplacementMap.png");
-//   const normalMap = textureLoader.load("NormalMap.png");
-//   const roughnessMap = textureLoader.load("RoughnessMap.png");
-//   const aoMap = textureLoader.load("AoMap.png");
-
-//   const springProps = useSpring({
-//     amplitude:
-//       selectedId === 0
-//         ? 0.7
-//         : selectedId === 1
-//         ? 2.5
-//         : selectedId === 2
-//         ? 0.375
-//         : 0.1875,
-//     frequency:
-//       selectedId === 0
-//         ? 0
-//         : selectedId === 1
-//         ? 0.1
-//         : selectedId === 2
-//         ? 0.2
-//         : 0.1,
-//     displacementEffect:
-//       selectedId === 0
-//         ? 0
-//         : selectedId === 1
-//         ? 0.2
-//         : selectedId === 2
-//         ? 0.025
-//         : 0.0125,
-//     rotation:
-//       selectedId === 0
-//         ? [0.2, 0.15, 1.05]
-//         : selectedId === 1
-//         ? [-0.15, 0.15, 0.1]
-//         : [0.1, 0.1, 0.1],
-//     sphereGeometry: selectedId === 1 ? [1.5, 7, 6] : [1, 3, 3],
-//     config: { mass: 5, tension: 400, friction: 50 },
-//   });
-//   // Assuming springProps is already defined as shown previously:
-//   const { amplitude, frequency, displacementEffect, rotation, sphereGeometry } =
-//     springProps;
-
-//   const geometry = useMemo(() => {
-//     // Access the current value of sphereGeometry
-//     const [radius, widthSegments, heightSegments] = sphereGeometry.get();
-
-//     return new THREE.SphereGeometry(radius, widthSegments, heightSegments);
-//   }, [sphereGeometry]); // Here, sphereGeometry is a dependency as an animated object, not a value
-
-//   useFrame((state) => {
-//     const time = state.clock.getElapsedTime();
-//     const positions = meshRef.current.geometry.attributes.position;
-
-//     // Ensure we're accessing values from springProps which hold the animated values
-//     const currentFrequency = frequency.get();
-//     const currentAmplitude = amplitude.get();
-//     const currentDisplacementEffect = displacementEffect.get();
-
-//     for (let i = 0; i < positions.count; i++) {
-//       const ix = i * 3;
-//       const iy = ix + 1;
-//       const iz = ix + 2;
-
-//       const originalX = positions.array[ix];
-//       const originalY = positions.array[iy];
-//       const originalZ = positions.array[iz];
-
-//       const noise =
-//         simplex(
-//           originalX * currentFrequency,
-//           originalY * currentFrequency,
-//           originalZ * currentFrequency + time * 0.35
-//         ) * currentAmplitude;
-
-//       const displacement =
-//         Math.sin(noise * 1.5 + time * 0.2) * currentDisplacementEffect;
-
-//       positions.setXYZ(
-//         i,
-//         originalX + displacement,
-//         originalY + displacement,
-//         originalZ + displacement
-//       );
-//     }
-
-//     positions.needsUpdate = true;
-//   });
-
-//   return (
-//     <animated.mesh
-//       ref={meshRef}
-//       geometry={geometry}
-//       rotation-x={rotation[0]}
-//       rotation-y={rotation[1]}
-//       rotation-z={rotation[2]}
-//     >
-//       <meshStandardMaterial
-//         vertexColors
-//         roughnessMap={roughnessMap}
-//         normalMap={normalMap}
-//         displacementMap={displacementMap}
-//         aoMap={aoMap}
-//       />
-//     </animated.mesh>
-//   );
-// }
-
-// export default function Scene({ selectedId }) {
-//   return (
-//     <Canvas
-//       className={styles.blobCanvas}
-//       style={{ aspectRatio: "1/1", maxHeight: "50vh", maxWidth: "50vh" }}
-//     >
-//       <ambientLight intensity={1.25} />
-//       <pointLight position={[-3, 1, 2]} castShadow intensity={1.5} />
-//       <pointLight position={[1, 1, 2]} castShadow intensity={3} />
-//       <pointLight position={[0, 1, 2.5]} castShadow intensity={2} />
-//       <Blob selectedId={selectedId} />
-//     </Canvas>
-//   );
-// }
-
 import React, { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import * as THREE from "three";
 import { createNoise3D } from "simplex-noise";
-
-import { animated, useSpring } from "@react-spring/three";
 
 import styles from "./Blob.module.css";
 
@@ -151,30 +14,14 @@ function Blob({ selectedId }: { selectedId: number }) {
   const [displacementEffect, setDisplacementEffect] = useState(0.1);
   const [rotation, setRotation] = useState([0.1, 0.1, 0.1]);
   const [stateSphereGeometry, setStateSphereGeometry] = useState([1, 3, 3]);
-  const [wasClicked, setWasClicked] = useState(false);
-
-  const { morph, rotationSpeed, rotation } = useSpring({
-    from: { morph: [1, 3, 3], rotationSpeed: 0.1, rotation: [0.1, 0.1, 0.1] },
-    to: async (next, cancel) => {
-      await next({ rotationSpeed: 100, rotation: [10, 10, 10] }); // Speed up rotation and rotate wildly
-      await next({ morph: [1, 32, 32] }); // Morph into a perfect sphere
-      await next({
-        morph: selectedIdGeometry[selectedId],
-        rotationSpeed: targetRotationSpeed[selectedId],
-        rotation: targetRotation[selectedId],
-      }); // Transition to new shape
-    },
-    config: { mass: 1, tension: 280, friction: 60 },
-  });
 
   useEffect(() => {
-    setWasClicked(true);
+    console.log(selectedId);
     if (selectedId === 0) {
       setAmplitude(0.7);
       setFrequency(0);
       setDisplacementEffect(0);
       setRotation([0.05, 0.05, 0.05]);
-      setStateSphereGeometry([1, 3, 3]);
     } else if (selectedId == 1) {
       setAmplitude(2.5);
       setFrequency(0.1);
@@ -196,16 +43,6 @@ function Blob({ selectedId }: { selectedId: number }) {
       setDisplacementEffect(0.1);
     }
   }, [selectedId]);
-
-  useEffect(() => {
-    if (wasClicked === true) {
-      setRotation([0, 100, 100]);
-
-      setTimeout(() => {
-        setWasClicked(false);
-      }, 1000);
-    }
-  }, [wasClicked]);
 
   // code for the actual blob
   const meshRef = useRef();
@@ -345,21 +182,15 @@ function Blob({ selectedId }: { selectedId: number }) {
   });
 
   return (
-    <animated.mesh
-      ref={meshRef}
-      geometry={geometry}
-      rotation-x={rotation[0]}
-      rotation-y={rotation[1]}
-      rotation-z={rotation[2]}
-    >
+    <mesh ref={meshRef} geometry={geometry}>
       <meshStandardMaterial
         vertexColors
         roughness={0.2}
         metalness={0.25}
         normalMap={normalMap}
         displacementMap={displacementMap}
-      />
-    </animated.mesh>
+      ></meshStandardMaterial>
+    </mesh>
   );
 }
 
