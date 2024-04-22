@@ -1,49 +1,146 @@
+import React, { useState } from "react";
 import styles from "./Services.module.css";
-
 import Scene from "./Blob";
 
 export default function Services() {
-  const selectedService = {
-    headline: "Digital Strategy",
-    description: [
-      "We connect the dots between your business goals, the needs of your customers, and the latest technology to create a digital strategy that will help you grow your business.",
-
-      "We start by understanding your business goals and the needs of your customers. We then use this information to create a digital strategy that will help you achieve your goals and meet the needs of your customers.",
-
-      "Our team of experts will work with you to create a digital strategy that is tailored to your business and your customers. We will help you identify the right digital channels to reach your target audience, and develop a plan to engage with them in a meaningful way.",
-
-      "We will help you measure the success of your digital strategy, and make adjustments as needed to ensure that you are getting the results you want. Our goal is to help you grow your business and achieve your goals through digital marketing.",
-    ],
-    buttonText: "Check Strategy Readiness",
-    buttonAction: () => {
-      console.log("Learn More");
+  const services = [
+    {
+      id: 0,
+      navline: "Experience Strategy",
+      headline: "Advance beyond Aesthetics",
+      description: [
+        "Good Design creates experiences that resonate with your audience and drive business outcomes in a compliant & manageable way.",
+        "",
+      ],
+      services: [
+        {
+          text: "CX Compliance & Benchmarking",
+          link: "/growth-strategy",
+        },
+        {
+          text: "Discovery Workshops",
+          link: "/digital-transformation",
+        },
+        {
+          text: "Prototyping & Testing",
+          link: "/product-strategy",
+        },
+      ],
     },
-  };
+    {
+      id: 1,
+      navline: "Validated MVPs",
+      headline: "Validated MVPs",
+      description: [
+        "Bring your ideas to life with our Prototypes & MVPs services. From initial concept to a market-ready product, we specialize in creating prototypes and Minimum Viable Products that allow for iterative testing and rapid learning.",
+
+        "Validate your ideas and accelerate your path to market with our expertly crafted solutions.",
+      ],
+      services: [
+        {
+          text: "Rapid Prototyping",
+          link: "/growth-strategy",
+        },
+        {
+          text: "MVP Development",
+          link: "/digital-transformation",
+        },
+        {
+          text: "Iterative Design and Testing",
+          link: "/product-strategy",
+        },
+      ],
+    },
+    {
+      id: 2,
+      navline: "Delightful Products",
+      headline: "Delightful Products",
+      description: [
+        "In a world where staying ahead means being disruptive, our Disruptive Products services are designed to help you redefine markets.",
+
+        "By focusing on emerging behaviors, technologies, and needs, we assist in launching products that not only meet the moment but also set new standards.",
+      ],
+      services: [
+        {
+          text: "Innovative Product Development",
+          link: "/growth-strategy",
+        },
+        {
+          text: "Market Analysis & Emerging Trends",
+          link: "/digital-transformation",
+        },
+        {
+          text: "Corporate Venture Building",
+          link: "/product-strategy",
+        },
+      ],
+    },
+    {
+      id: 3,
+      navline: "Strategy-Digital-Fit",
+      headline: "Strategy-Digital-Fit",
+      description: [
+        "In an era where technology evolves at the speed of thought, your business needs a Digital Strategy that's not only robust but also flexible enough to adapt to new trends and challenges.",
+
+        "Let us help you navigate the digital landscape with forward-thinking strategies that ensure your business not only survives but thrives.",
+      ],
+      services: [
+        {
+          text: "Growth Strategy Development",
+          link: "/growth-strategy",
+        },
+        {
+          text: "Innovation Strategy",
+          link: "/digital-transformation",
+        },
+        {
+          text: "Digital Transformation Planning",
+          link: "/product-strategy",
+        },
+      ],
+    },
+  ];
+
+  const [selectedService, setSelectedService] = useState(services[0]);
+
+  if (!selectedService) {
+    return "loading...";
+  }
 
   return (
     <section className={styles.servicesSection}>
-      <div className={styles.servicesContainer}>
-        <h3>Digital Strategy</h3>
-        <h3> Prototypes</h3>
-        <h3>Successfull Products</h3>
-        <h3>Digital Experiences</h3>
-      </div>
       <div className={styles.serviceContentContainer}>
-        <div className={styles.sceneContainer}>
-          <Scene />
+        <div className={styles.subNavContainer}>
+          {services.map((service, index) => (
+            <h2
+              key={index}
+              className={
+                index === selectedService.id && styles.selectedHeadline
+              }
+              onClick={() => setSelectedService(service)}
+            >
+              {service.navline}
+            </h2>
+          ))}
         </div>
+
+        <div className={styles.sceneContainer}>
+          <Scene selectedId={selectedService.id} />
+        </div>
+
         <article className={styles.serviceContent}>
-          <span>CREATE</span>
-          <h2>{selectedService.headline}</h2>
+          <h3>{selectedService.headline}</h3>
           {selectedService.description.map((desc, index) => (
             <p key={index}>{desc}</p>
           ))}
-          <button
-            className={styles.learnMoreButton}
-            onClick={selectedService.buttonAction}
-          >
-            <span>{selectedService.buttonText}</span>
-          </button>
+
+          <ul>
+            {selectedService.services.map((service, index) => (
+              <li key={index}>
+                <a href={service.link}>{service.text}</a>
+              </li>
+            ))}
+          </ul>
         </article>
       </div>
     </section>
