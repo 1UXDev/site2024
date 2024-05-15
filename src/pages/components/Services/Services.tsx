@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Services.module.css";
-import Scene from "./Blob";
+import { Scene } from "./Blob";
 
 export default function Services() {
   const services = [

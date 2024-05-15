@@ -22,7 +22,6 @@ function Blob({ selectedId }: { selectedId: number }) {
       setFrequency(0);
       setDisplacementEffect(0);
       setRotation([0.05, 0.05, 0.05]);
-      setStateSphereGeometry([1, 3, 3]);
     } else if (selectedId == 1) {
       setAmplitude(2.5);
       setFrequency(0.1);
@@ -50,6 +49,16 @@ function Blob({ selectedId }: { selectedId: number }) {
   const meshRef = useRef();
   const simplex = createNoise3D();
   const originalPositions = useRef();
+
+  // const geometry = useMemo(() => {
+  //   return selectedId === 1
+  //     ? new THREE.SphereGeometry(1.5, 4, 4)
+  //     : new THREE.SphereGeometry(
+  //          stateSphereGeometry[0],
+  //         stateSphereGeometry[1],
+  //         stateSphereGeometry[2]
+  //       );
+  // }, [selectedId]);
 
   const geometry = new THREE.SphereGeometry(
     stateSphereGeometry[0],
@@ -186,20 +195,12 @@ function Blob({ selectedId }: { selectedId: number }) {
   );
 }
 
-export function Scene({ selectedId }: number) {
-  const [transitionAnimation, setTransitionAnimation] = useState(false);
-
-  useEffect(() => {
-    setTransitionAnimation(true);
-    setTimeout(() => {
-      setTransitionAnimation(false);
-    }, 210);
-  }, [selectedId]);
+export function Scene2({ selectedId }: number) {
   return (
     <Canvas
-      className={`${styles.blobCanvas} ${
-        transitionAnimation && styles.transitionAnimation
-      }`}
+      className={styles.blobCanvas}
+      // style={{ width: "30vh", height: "30vh" }}
+      style={{ aspectRatio: "1/1", maxHeight: "50vh", maxWidth: "50vh" }}
     >
       <ambientLight intensity={1.25} />
       <pointLight position={[-3, 1, 2]} castShadow intensity={1.5} />

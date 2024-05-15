@@ -1,5 +1,5 @@
 .heroSection {
-  background: linear-gradient(to right, rgba(241, 241, 241, 0.9), #e1e1e0);
+  /* background: linear-gradient(to right, rgba(241, 241, 241, 0.9), #e1e1e0); */
   height: 100vh;
   min-height: 500px;
   text-align: center;
@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.heroSection::before {
+/* .heroSection::before {
   content: "";
   position: absolute;
   top: 0;
@@ -21,7 +21,9 @@
   background-image: linear-gradient(to right, grey 1px, transparent 1px),
     linear-gradient(to bottom, grey 1px, transparent 1px);
   z-index: -1;
-}
+   background-attachment: fixed; 
+} */
+
 .heroTitle {
   display: flex;
   flex-flow: row;
