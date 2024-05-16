@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import Hero from "./components/Hero/Hero";
 import Nav from "./components/Nav/Nav";
 import Services from "./components/Services/Services";
+import CaseStudies from "./components/CaseStudies/CaseStudies";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +22,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
-      <Hero />
-      <Services />
+      <div className={styles.scrollSnap}>
+        <Hero />
+        <Services />
+        <CaseStudies />
+      </div>
     </main>
   );
 }

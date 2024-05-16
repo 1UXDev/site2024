@@ -1,7 +1,5 @@
 .heroSection {
   /* background: linear-gradient(to right, rgba(241, 241, 241, 0.9), #e1e1e0); */
-  height: 100vh;
-  min-height: 500px;
   text-align: center;
   z-index: 2;
   display: flex;

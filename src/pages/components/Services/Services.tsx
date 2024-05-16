@@ -6,7 +6,7 @@ export default function Services() {
   const services = [
     {
       id: 0,
-      navline: "Experience Strategy",
+      navline: "Reliable Experience Strategy",
       headline: "Advance beyond Aesthetics",
       description: [
         "Good Design creates experiences that resonate with your audience and drive business outcomes in a compliant & manageable way.",
@@ -29,8 +29,8 @@ export default function Services() {
     },
     {
       id: 1,
-      navline: "Validated MVPs",
-      headline: "Validated MVPs",
+      navline: "Super fast Prototypes",
+      headline: "Create Successful Prototypes in a few Days",
       description: [
         "Bring your ideas to life with our Prototypes & MVPs services. From initial concept to a market-ready product, we specialize in creating prototypes and Minimum Viable Products that allow for iterative testing and rapid learning.",
 
@@ -53,8 +53,8 @@ export default function Services() {
     },
     {
       id: 2,
-      navline: "Delightful Products",
-      headline: "Delightful Products",
+      navline: "Launch MVPs in the matter of Weeks",
+      headline: "Launch MVPs in the matter of Weeks",
       description: [
         "In a world where staying ahead means being disruptive, our Disruptive Products services are designed to help you redefine markets.",
 
@@ -77,8 +77,8 @@ export default function Services() {
     },
     {
       id: 3,
-      navline: "Strategy-Digital-Fit",
-      headline: "Strategy-Digital-Fit",
+      navline: "Build  & Scale Delightful Products",
+      headline: "Build Delightful Products",
       description: [
         "In an era where technology evolves at the speed of thought, your business needs a Digital Strategy that's not only robust but also flexible enough to adapt to new trends and challenges.",
 
@@ -142,6 +142,19 @@ export default function Services() {
             ))}
           </ul>
         </article>
+      </div>
+      <div className={styles.navDots}>
+        {services.map((service, index) => (
+          <div
+            key={index}
+            className={
+              index === selectedService.id
+                ? `${styles.navDot} ${styles.selectedNavDot}`
+                : styles.navDot
+            }
+            onClick={() => setSelectedService(service)}
+          ></div>
+        ))}
       </div>
     </section>
   );

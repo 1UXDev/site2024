@@ -14,31 +14,47 @@ function Blob({ selectedId }: { selectedId: number }) {
   const [displacementEffect, setDisplacementEffect] = useState(0.1);
   const [rotation, setRotation] = useState([0.1, 0.1, 0.1]);
   const [stateSphereGeometry, setStateSphereGeometry] = useState([1, 3, 3]);
+  const [normalMapInput, setNormalMapInput] = useState("pic.png");
+  const [displacementMapInput, setDisplacementMapInput] =
+    useState("NormalMap.png");
 
   useEffect(() => {
     console.log(selectedId);
     if (selectedId === 0) {
       setAmplitude(0.7);
-      setFrequency(0);
-      setDisplacementEffect(0);
+      setFrequency(0.2);
+      setDisplacementEffect(0.15);
       setRotation([0.05, 0.05, 0.05]);
       setStateSphereGeometry([1, 3, 3]);
+      setNormalMapInput("pic.png");
+      setDisplacementMapInput("NormalMap.png");
     } else if (selectedId == 1) {
-      setAmplitude(2.5);
+      setAmplitude(1);
       setFrequency(0.1);
       setDisplacementEffect(0.2);
       setRotation([-0.15, 0.15, 0.1]);
-      setStateSphereGeometry([1.5, 7, 6]);
+      setStateSphereGeometry([1.2, 7, 5]);
+      setNormalMapInput("pic.png");
+      setDisplacementMapInput("NormalMap.png");
     } else if (selectedId === 2) {
-      setAmplitude(0.375);
+      // setAmplitude(0.1875);
+      // setFrequency(0.1);
+      // setDisplacementEffect(0.0225);
+      // setRotation([-0.15, 0.15, 0.1]);
+      setAmplitude(0.13);
       setFrequency(0.2);
-      setDisplacementEffect(0.025);
-      setStateSphereGeometry([1.5, 4, 4]);
-    } else if (selectedId === 3) {
-      setAmplitude(0.1875);
-      setFrequency(0.1);
-      setDisplacementEffect(0.0225);
+      setDisplacementEffect(0.03);
+      setRotation([-0.2, 0.2, 0.14]);
       setStateSphereGeometry([1.5, 256, 256]);
+      setNormalMapInput("pic.png");
+      setDisplacementMapInput("NormalMap.png");
+    } else if (selectedId === 3) {
+      setAmplitude(0.02);
+      setFrequency(0.25);
+      setDisplacementEffect(0);
+      setNormalMapInput("NormalMap.png");
+      setDisplacementMapInput("next.svg");
+      setStateSphereGeometry([2, 128, 128]);
     } else {
       setAmplitude(1.5);
       setFrequency(0.8);
@@ -60,7 +76,12 @@ function Blob({ selectedId }: { selectedId: number }) {
   // const gradientTexture = textureLoader.load("/pic.jpg");
   const [displacementMap, normalMap, roughnessMap, aoMap] = useLoader(
     TextureLoader,
-    ["NormalMap.png", "pic.png", "NormalMap.png", "NormalMap2.png"]
+    [
+      `${displacementMapInput}`,
+      `${normalMapInput}`,
+      "NormalMap.png",
+      "NormalMap2.png",
+    ]
   );
 
   useMemo(() => {
