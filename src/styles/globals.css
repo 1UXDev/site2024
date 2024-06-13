@@ -101,6 +101,16 @@ a {
   text-decoration: none;
 }
 
+h2 {
+  font-size: 2.5rem;
+}
+
+section {
+  height: 100%;
+  min-height: 100vh;
+  scroll-snap-align: center;
+}
+
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

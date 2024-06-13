@@ -1,9 +1,9 @@
 .nav {
   position: fixed;
   width: 100%;
-  color: rgb(60, 60, 60);
-  font-size: 1rem;
-  font-weight: 600;
+  color: rgb(80, 80, 80);
+  font-size: 0.9rem;
+  font-weight: 400;
   display: flex;
   gap: 36px;
   justify-content: center;
@@ -39,7 +39,7 @@
 .nav.navScrollContainer {
   padding: 0.7rem 2rem;
   background: rgb(240, 240, 240);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .navScrollContainer .logo {
@@ -65,55 +65,3 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-/* .nav .logo {
-  display: none;
-}
-
-.nav .navLink {
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  transition: all 0.4s ease-in-out;
-  font-size: 0.9rem;
-  font-weight: 600;
-  -webkit-background-clip: none;
-  -webkit-text-fill-color: rgb(60, 60, 60);
-  transition: all 0.4s ease-in-out;
-}
-
-.nav .navLink:hover {
-  background: linear-gradient(
-    to right,
-    #c16507,
-    #dc373c,
-    #de0075,
-    #b420b6,
-    #1253eb
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.navScroll {
-  position: fixed;
-  width: 100%;
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  align-items: center;
-  padding: 0.4rem 2rem;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-}
-.navScroll .navLink {
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  transition: all 0.4s ease-in-out;
-  font-size: 0.8rem;
-  font-weight: 600;
-  -webkit-background-clip: none;
-  -webkit-text-fill-color: rgb(60, 60, 60);
-  transition: all 0.4s ease-in-out;
-} */
