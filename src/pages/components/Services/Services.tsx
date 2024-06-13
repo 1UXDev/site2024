@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import styles from "./Services.module.css";
 import { Scene } from "./Blob";
 import Image from "next/image";
-import { OuterCircle } from "./OuterCircle";
-import { OuterCircle2 } from "./OuterCircle2";
+import { OuterCircle } from "./OuterCircle/OuterCircle";
+import RightSection from "./RightSectionSubNav/RightSection";
+import ServicesCards from "./ServicesCards/ServicesCards";
 
 export default function Services() {
   const services = [
@@ -112,43 +113,19 @@ export default function Services() {
 
   return (
     <section className={styles.servicesSection}>
-      <div className={styles.serviceContentContainer}>
-        <div className={styles.subNavContainer}>
-          {services.map((service, index) => (
-            <h2
-              key={index}
-              className={
-                index === selectedService.id ? styles.selectedHeadline : ""
-              }
-              onClick={() => setSelectedService(service)}
-            >
-              {service.navline}
-            </h2>
-          ))}
-        </div>
-
-        <div className={styles.sceneContainer}>
-          <Scene selectedId={selectedService.id} />
-          <div className={styles.q}>
-            <OuterCircle phase={selectedService.id} />
-          </div>
-        </div>
-
-        <article className={styles.serviceContent}>
-          <h3>{selectedService.headline}</h3>
-          {selectedService.description.map((desc, index) => (
-            <p key={index}>{desc}</p>
-          ))}
-
-          <ul>
-            {selectedService.services.map((service, index) => (
-              <li key={index}>
-                <a href={service.link}>{service.text}</a>
-              </li>
-            ))}
-          </ul>
-        </article>
+      <ServicesCards selectedService={selectedService} />
+      <div className={styles.sceneContainer}>
+        <Scene selectedId={selectedService.id} />
+        <OuterCircle phase={selectedService.id} />
       </div>
+      <div className={styles.rightSectionContainer}>
+        <RightSection
+          selectedService={selectedService}
+          setSelectedService={setSelectedService}
+          services={services}
+        />
+      </div>
+
       <div className={styles.navDots}>
         {services.map((service, index) => (
           <div

@@ -60,11 +60,10 @@ export function OuterCircle({ phase }) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 368.5 368.5"
       style={{
-        width: "100%",
-        height: "auto",
         rotate: `${rotate}deg`,
         transition: "rotate 1s",
       }}
+      className={styles.svgContainer}
     >
       <defs>
         <style>
