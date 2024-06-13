@@ -113,7 +113,11 @@ export default function Services() {
 
   return (
     <section className={styles.servicesSection}>
-      <ServicesCards selectedService={selectedService} />
+      <ServicesCards
+        selectedService={selectedService}
+        services={services}
+        setSelectedService={setSelectedService}
+      />
       <div className={styles.sceneContainer}>
         <Scene selectedId={selectedService.id} />
         <OuterCircle phase={selectedService.id} />
@@ -124,20 +128,6 @@ export default function Services() {
           setSelectedService={setSelectedService}
           services={services}
         />
-      </div>
-
-      <div className={styles.navDots}>
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className={
-              index === selectedService.id
-                ? `${styles.navDot} ${styles.selectedNavDot}`
-                : styles.navDot
-            }
-            onClick={() => setSelectedService(service)}
-          ></div>
-        ))}
       </div>
     </section>
   );
