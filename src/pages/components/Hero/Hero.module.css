@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: 90vh;
 }
 
 /* .heroSection::before {
@@ -43,7 +44,7 @@
 }
 .heroSection h1 {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 10rem;
+  font-size: 8rem;
   background: linear-gradient(
     to right bottom,
     #c16507,
@@ -62,7 +63,7 @@
 } */
 
 .typewriterContainer {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: rgb(60, 60, 60);
   display: flex;
   gap: 8px;

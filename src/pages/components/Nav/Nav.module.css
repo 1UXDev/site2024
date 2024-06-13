@@ -1,9 +1,9 @@
 .nav {
   position: fixed;
   width: 100%;
-  color: rgb(60, 60, 60);
-  font-size: 1.1rem;
-  font-weight: 600;
+  color: rgb(80, 80, 80);
+  font-size: 0.9rem;
+  font-weight: 400;
   display: flex;
   gap: 36px;
   justify-content: center;

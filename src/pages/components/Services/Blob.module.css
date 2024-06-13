@@ -19,6 +19,7 @@
   aspect-ratio: 1/1;
   min-width: 300px;
   min-height: 300px;
+
   max-width: 60vh;
   max-height: 60vh;
   transition: all 0.1s ease-in-out;

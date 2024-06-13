@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Services.module.css";
 import { Scene } from "./Blob";
+import Image from "next/image";
+import { OuterCircle } from "./OuterCircle";
+import { OuterCircle2 } from "./OuterCircle2";
 
 export default function Services() {
   const services = [
@@ -115,7 +118,7 @@ export default function Services() {
             <h2
               key={index}
               className={
-                index === selectedService.id && styles.selectedHeadline
+                index === selectedService.id ? styles.selectedHeadline : ""
               }
               onClick={() => setSelectedService(service)}
             >
@@ -126,6 +129,9 @@ export default function Services() {
 
         <div className={styles.sceneContainer}>
           <Scene selectedId={selectedService.id} />
+          <div className={styles.q}>
+            <OuterCircle phase={selectedService.id} />
+          </div>
         </div>
 
         <article className={styles.serviceContent}>
