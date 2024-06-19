@@ -1,6 +1,6 @@
 .svgContainer {
   position: absolute;
-  height: 112%;
+  height: 100%;
   aspect-ratio: 1/1;
   border-radius: 50%;
   z-index: -1;

@@ -1,13 +1,10 @@
 .navDots {
-  bottom: 5%;
-
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.2rem;
-  padding: 0.2rem;
-
   z-index: 5;
+  margin-left: -0.5rem;
 }
 .navDots .navDot {
   cursor: pointer;
@@ -19,11 +16,21 @@
   transition: all 0.25s ease-in-out;
 }
 .navDots .selectedNavDot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: linear-gradient(to right bottom, #b420b6, #1253eb);
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin: 0.5rem;
+  transition: all 0.25s ease-in-out;
+}
 
+.navDots .selectedNavDot::after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 8px;
+  width: 10px;
+  height: 3px;
+
+  background-color: rgba(0, 0, 0, 0.8);
   margin: 0.5rem;
   transition: all 0.25s ease-in-out;
 }

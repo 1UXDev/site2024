@@ -1,11 +1,61 @@
+import { useState } from "react";
+
 import styles from "./CaseStudies.module.css";
+import Image from "next/image";
 
 export default function CaseStudies() {
   const caseStudies = [
     {
       id: 0,
+      navline:
+        "Interactive Training Platform for Medical Professionals to become certified in MRI Imaging & Diagnosis",
+      logo: "/references/circle/logo.svg",
+      colors: {
+        primary: "#2357AF",
+        secondary: "#a5abb1",
+        tertiary: "#f5f5f5",
+      },
+      headline: "CMR Orbit",
+      images: [
+        {
+          src: "/references/circle/index.png",
+          alt: "Index Page of CMR Orbit Platform",
+        },
+        {
+          src: "/references/circle/training.png",
+          alt: "Training Page of CMR Orbit Platform",
+        },
+      ],
+      description: [
+        "The client needed to implement a performant and automated solution to offer certifications to medical professionals. We designed a solution that allowed for a seamless experience for the end-user and a robust backend for the client.",
+        "CMR Orbit allows doctors to book case-bundles, track their progress, and receive certifications by answering questionnaires. The client can manage the content, track user progress, generate reports and certificates.",
+        "The client needed to implement a performant and automated solution to offer certifications to medical professionals. We designed a solution that allowed for a seamless experience for the end-user and a robust backend for the client.",
+        "CMR Orbit allows doctors to book case-bundles, track their progress, and receive certifications by answering questionnaires. The client can manage the content, track user progress, generate reports and certificates.",
+      ],
+      services: [
+        {
+          text: "CX Compliance & Benchmarking",
+          link: "/growth-strategy",
+        },
+        {
+          text: "Discovery Workshops",
+          link: "/digital-transformation",
+        },
+        {
+          text: "Prototyping & Testing",
+          link: "/product-strategy",
+        },
+      ],
+    },
+    {
+      id: 1,
       navline: "Experience Strategy",
-      headline: "Advance beyond Aesthetics",
+      headline: "Fishing Tourism for the Scandinavian Market",
+      logo: "/references/flodge/logo.svg",
+      colors: {
+        primary: "#0084ff",
+        secondary: "#a5abb1",
+      },
       images: [
         {
           src: "/references/circle/index.png",
@@ -36,33 +86,106 @@ export default function CaseStudies() {
       ],
     },
   ];
+  const [activeImage, setActiveImage] = useState(0);
 
   return (
     <section className={styles.referenceSection}>
-      <h1>Case Studies</h1>
-      {caseStudies.map((caseStudy) => (
-        <article key={caseStudy.id}>
-          <div className={styles.leftSide}>
-            <h2>{caseStudy.headline}</h2>
-            <p>{caseStudy.description[0]}</p>
-
+      <article className={styles.caseStudy}>
+        <div className={styles.leftSide}>
+          <Image
+            src={caseStudies[0].logo}
+            width={100}
+            height={100}
+            className={styles.logo}
+            alt="Logo of the client company"
+            style={{
+              border: `6px solid ${caseStudies[0].colors.primary}`,
+            }}
+          />
+          <div className={styles.textContent}>
+            <h2
+              style={{
+                color: caseStudies[0].colors.primary,
+              }}
+            >
+              {caseStudies[0].headline}
+            </h2>
+            <p>
+              {caseStudies[0].description.map((paragraph, index) => (
+                <>
+                  {paragraph}
+                  <br></br>
+                </>
+              ))}
+            </p>
             <ul>
-              {caseStudy.services.map((service) => (
-                <li key={service.text}>
-                  <a href={service.link}>{service.text}</a>
+              {caseStudies[0].services.map((service, index) => (
+                <li
+                  key={service.text}
+                  className={index === activeImage ? styles.active : ""}
+                  onClick={() => setActiveImage(index)}
+                >
+                  {service.text}
                 </li>
               ))}
             </ul>
           </div>
-          <div className={styles.rightSide}>
-            {caseStudy.images.map((image, index) => (
-              <div className={styles.imageContainer} key={`image` + index}>
-                <img src={image.src} alt={image.alt} />
+        </div>
+        <div className={styles.rightSide}>
+          {/* <div
+            style={{
+              width: "100%",
+              height: "24px",
+              backgroundImage: `linear-gradient(
+              140deg,
+              ${caseStudies[0].colors.primary} 0%,
+              ${caseStudies[0].colors.secondary} 50%,
+              ${caseStudies[0].colors.tertiary} 100%
+            )`,
+            }}
+          /> */}
+          <span className={styles.navLine}>
+            {caseStudies[0].navline}
+            <div className={styles.caseStudyColors}>
+              {Object.values(caseStudies[0].colors).map((color, index) => (
+                <div
+                  key={`color` + index + color}
+                  style={{ backgroundColor: color }}
+                ></div>
+              ))}
+            </div>
+          </span>
+
+          <div className={styles.galleryContainer}>
+            {caseStudies[0].images[activeImage] && (
+              <div className={styles.imageContainer}>
+                <Image
+                  src={caseStudies[0].images[activeImage].src}
+                  alt={caseStudies[0].images[activeImage].alt}
+                  width={1440}
+                  height={1100}
+                  layout="responsive"
+                  className={styles.coverImage}
+                />
               </div>
-            ))}
+            )}
           </div>
-        </article>
-      ))}
+        </div>
+      </article>
     </section>
   );
 }
+
+// style={{
+//   backgroundImage: `linear-gradient(
+//     140deg,
+//     ${caseStudies[0].colors.primary} 60%,
+//     ${caseStudies[0].colors.secondary} 100%
+//   )`,
+//   // if the color is too light, change the text color to black
+//   color:
+//     parseInt(caseStudies[0].colors.primary.replace("#", ""), 16) >
+//     0xffffff / 1.1
+//       ? "black"
+//       : "white",
+// }}
