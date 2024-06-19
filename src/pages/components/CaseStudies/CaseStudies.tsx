@@ -29,8 +29,6 @@ export default function CaseStudies() {
       description: [
         "The client needed to implement a performant and automated solution to offer certifications to medical professionals. We designed a solution that allowed for a seamless experience for the end-user and a robust backend for the client.",
         "CMR Orbit allows doctors to book case-bundles, track their progress, and receive certifications by answering questionnaires. The client can manage the content, track user progress, generate reports and certificates.",
-        "The client needed to implement a performant and automated solution to offer certifications to medical professionals. We designed a solution that allowed for a seamless experience for the end-user and a robust backend for the client.",
-        "CMR Orbit allows doctors to book case-bundles, track their progress, and receive certifications by answering questionnaires. The client can manage the content, track user progress, generate reports and certificates.",
       ],
       services: [
         {
@@ -92,29 +90,27 @@ export default function CaseStudies() {
     <section className={styles.referenceSection}>
       <article className={styles.caseStudy}>
         <div className={styles.leftSide}>
-          <Image
-            src={caseStudies[0].logo}
-            width={100}
-            height={100}
-            className={styles.logo}
-            alt="Logo of the client company"
-            style={{
-              border: `6px solid ${caseStudies[0].colors.primary}`,
-            }}
-          />
-          <div className={styles.textContent}>
-            <h2
+          <div className={styles.logoContainer}>
+            <Image
+              src={caseStudies[0].logo}
+              width={100}
+              height={100}
+              className={styles.logo}
+              alt="Logo of the client company"
               style={{
-                color: caseStudies[0].colors.primary,
+                border: `3px solid ${caseStudies[0].colors.primary}`,
               }}
-            >
+            />
+          </div>
+          <div className={styles.textContent}>
+            <h2 style={{ color: caseStudies[0].colors.primary }}>
               {caseStudies[0].headline}
             </h2>
             <p>
               {caseStudies[0].description.map((paragraph, index) => (
                 <>
                   {paragraph}
-                  <br></br>
+                  <br />
                 </>
               ))}
             </p>
@@ -132,30 +128,6 @@ export default function CaseStudies() {
           </div>
         </div>
         <div className={styles.rightSide}>
-          {/* <div
-            style={{
-              width: "100%",
-              height: "24px",
-              backgroundImage: `linear-gradient(
-              140deg,
-              ${caseStudies[0].colors.primary} 0%,
-              ${caseStudies[0].colors.secondary} 50%,
-              ${caseStudies[0].colors.tertiary} 100%
-            )`,
-            }}
-          /> */}
-          <span className={styles.navLine}>
-            {caseStudies[0].navline}
-            <div className={styles.caseStudyColors}>
-              {Object.values(caseStudies[0].colors).map((color, index) => (
-                <div
-                  key={`color` + index + color}
-                  style={{ backgroundColor: color }}
-                ></div>
-              ))}
-            </div>
-          </span>
-
           <div className={styles.galleryContainer}>
             {caseStudies[0].images[activeImage] && (
               <div className={styles.imageContainer}>
@@ -170,6 +142,17 @@ export default function CaseStudies() {
               </div>
             )}
           </div>
+          <span className={styles.navLine}>
+            {caseStudies[0].navline}
+            <div className={styles.caseStudyColors}>
+              {Object.values(caseStudies[0].colors).map((color, index) => (
+                <div
+                  key={`color` + index + color}
+                  style={{ backgroundColor: color }}
+                ></div>
+              ))}
+            </div>
+          </span>
         </div>
       </article>
     </section>
