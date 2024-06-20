@@ -2,86 +2,91 @@ import React, { useEffect, useState } from "react";
 import styles from "./Services.module.css";
 import { Scene } from "./Blob";
 import Image from "next/image";
-import { OuterCircle } from "./OuterCircle";
-import { OuterCircle2 } from "./OuterCircle2";
+import { OuterCircle } from "./OuterCircle/OuterCircle";
+import RightSection from "./RightSectionSubNav/RightSection";
+import ServicesCards from "./ServicesCards/ServicesCards";
+import BottomText from "./BottomText/BottomText";
 
-export default function Services() {
+export default function Services({
+  sectionsRef,
+}: {
+  sectionsRef: React.MutableRefObject<any>;
+}) {
   const services = [
     {
       id: 0,
-      navline: "Reliable Experience Strategy",
+      navline: "Evolve Vision to Experience Strategy",
       headline: "Advance beyond Aesthetics",
       description: [
-        "Good Design creates experiences that resonate with your audience and drive business outcomes in a compliant & manageable way.",
-        "",
+        "Create experiences that resonate with your audience and drive business outcomes in a compliant & manageable way.",
+        "Form innovative CX-Visions and Strategies together with your team to advance from the Status Quo",
       ],
       services: [
         {
-          text: "CX Compliance & Benchmarking",
-          link: "/growth-strategy",
+          text: "Design for Compliance",
+          link: "/cx/compliance",
         },
         {
-          text: "Discovery Workshops",
-          link: "/digital-transformation",
+          text: "CX-Strategy Workshops",
+          link: "/cx/strategy-workshops",
         },
         {
-          text: "Prototyping & Testing",
-          link: "/product-strategy",
+          text: "Benchmark todays Experience",
+          link: "/cx/benchmark",
         },
       ],
     },
     {
       id: 1,
-      navline: "Super fast Prototypes",
-      headline: "Create Successful Prototypes in a few Days",
+      navline: "Create super fast Prototypes within a few days",
+      headline: "Verify Value with Prototypes",
       description: [
-        "Bring your ideas to life with our Prototypes & MVPs services. From initial concept to a market-ready product, we specialize in creating prototypes and Minimum Viable Products that allow for iterative testing and rapid learning.",
-
-        "Validate your ideas and accelerate your path to market with our expertly crafted solutions.",
+        "Turn Visions into interactive Prototypes in a matter of days. Get validated Feedback immediately with stakeholders and customers.",
+        "Leverage rapid development cycles with aligned stakeholders from business, technology and management.",
       ],
       services: [
         {
           text: "Rapid Prototyping",
-          link: "/growth-strategy",
+          link: "/prototyping/",
         },
         {
-          text: "MVP Development",
-          link: "/digital-transformation",
+          text: "UX-Testing",
+          link: "prototyping/testing",
         },
         {
-          text: "Iterative Design and Testing",
-          link: "/product-strategy",
+          text: "Stakeholder Alignment",
+          link: "/prototyping/alignment",
         },
       ],
     },
     {
       id: 2,
-      navline: "Launch MVPs in the matter of Weeks",
-      headline: "Launch MVPs in the matter of Weeks",
+      navline: "Drastically reduced go-to-market time",
+      headline: "Launch MVPs in a few Weeks",
       description: [
-        "In a world where staying ahead means being disruptive, our Disruptive Products services are designed to help you redefine markets.",
+        "Build the right Thing the right way. No matter if you want to build something entirely new or improve existing digital products.",
 
-        "By focusing on emerging behaviors, technologies, and needs, we assist in launching products that not only meet the moment but also set new standards.",
+        "The iterative approach of a Minimum Viable Product (MVP) combines early launches with short improvement cycles.",
       ],
       services: [
         {
-          text: "Innovative Product Development",
-          link: "/growth-strategy",
+          text: "The Minimum Viable Product",
+          link: "/mvp/",
         },
         {
-          text: "Market Analysis & Emerging Trends",
-          link: "/digital-transformation",
+          text: "Create new digital Products & Services",
+          link: "/mvp/create",
         },
         {
-          text: "Corporate Venture Building",
-          link: "/product-strategy",
+          text: "Evolve existing digital Ecosystems",
+          link: "/mvp/evolve",
         },
       ],
     },
     {
       id: 3,
-      navline: "Build  & Scale Delightful Products",
-      headline: "Build Delightful Products",
+      navline: "Turn Vision into Growth",
+      headline: "Scale your digital Products",
       description: [
         "In an era where technology evolves at the speed of thought, your business needs a Digital Strategy that's not only robust but also flexible enough to adapt to new trends and challenges.",
 
@@ -111,57 +116,23 @@ export default function Services() {
   }
 
   return (
-    <section className={styles.servicesSection}>
-      <div className={styles.serviceContentContainer}>
-        <div className={styles.subNavContainer}>
-          {services.map((service, index) => (
-            <h2
-              key={index}
-              className={
-                index === selectedService.id ? styles.selectedHeadline : ""
-              }
-              onClick={() => setSelectedService(service)}
-            >
-              {service.navline}
-            </h2>
-          ))}
-        </div>
-
-        <div className={styles.sceneContainer}>
-          <Scene selectedId={selectedService.id} />
-          <div className={styles.q}>
-            <OuterCircle phase={selectedService.id} />
-          </div>
-        </div>
-
-        <article className={styles.serviceContent}>
-          <h3>{selectedService.headline}</h3>
-          {selectedService.description.map((desc, index) => (
-            <p key={index}>{desc}</p>
-          ))}
-
-          <ul>
-            {selectedService.services.map((service, index) => (
-              <li key={index}>
-                <a href={service.link}>{service.text}</a>
-              </li>
-            ))}
-          </ul>
-        </article>
+    <section
+      className={styles.servicesSection}
+      id="services"
+      ref={(el) => {
+        sectionsRef.current[2] = el;
+      }}
+    >
+      <ServicesCards
+        selectedService={selectedService}
+        services={services}
+        setSelectedService={setSelectedService}
+      />
+      <div className={styles.sceneContainer}>
+        <Scene selectedId={selectedService.id} />
+        <OuterCircle phase={selectedService.id} />
       </div>
-      <div className={styles.navDots}>
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className={
-              index === selectedService.id
-                ? `${styles.navDot} ${styles.selectedNavDot}`
-                : styles.navDot
-            }
-            onClick={() => setSelectedService(service)}
-          ></div>
-        ))}
-      </div>
+      <BottomText services={services} selectedService={selectedService} />
     </section>
   );
 }
