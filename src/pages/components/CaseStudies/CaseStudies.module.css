@@ -11,20 +11,26 @@
   flex-flow: row;
   gap: 4rem;
   border-radius: 12px;
-  align-items: stretch;
+  align-items: center;
   align-self: center;
 
   width: 100%;
   height: 100%;
 }
 
+.referenceSection article * {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .leftSide {
   flex: 1;
-  min-width: 420px;
+  min-width: 380px;
+  height: fit-content;
+  max-height: 90vh;
 
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   border-radius: 12px;
   align-items: center;
 }
@@ -85,6 +91,7 @@
   flex-direction: column;
   gap: 12px;
   position: relative;
+  height: fit-content;
 }
 
 .galleryContainer {
@@ -102,10 +109,12 @@
 
 .navLine {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1.5rem;
+
   font-weight: 600;
-  padding-top: 0.75rem;
+  font-size: 0.9rem;
+
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   color: rgba(0, 0, 0, 0.5);
 }
