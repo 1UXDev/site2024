@@ -3,7 +3,11 @@ import { useState } from "react";
 import styles from "./CaseStudies.module.css";
 import Image from "next/image";
 
-export default function CaseStudies() {
+export default function CaseStudies({
+  sectionsRef,
+}: {
+  sectionsRef: React.MutableRefObject<any>;
+}) {
   const caseStudies = [
     {
       id: 0,
@@ -87,7 +91,13 @@ export default function CaseStudies() {
   const [activeImage, setActiveImage] = useState(0);
 
   return (
-    <section className={styles.referenceSection}>
+    <section
+      className={styles.referenceSection}
+      id="case-studies"
+      ref={(el) => {
+        sectionsRef.current[3] = el;
+      }}
+    >
       <article className={styles.caseStudy}>
         <div className={styles.leftSide}>
           <div className={styles.logoContainer}>
@@ -142,17 +152,6 @@ export default function CaseStudies() {
               </div>
             )}
           </div>
-          <span className={styles.navLine}>
-            {caseStudies[0].navline}
-            <div className={styles.caseStudyColors}>
-              {Object.values(caseStudies[0].colors).map((color, index) => (
-                <div
-                  key={`color` + index + color}
-                  style={{ backgroundColor: color }}
-                ></div>
-              ))}
-            </div>
-          </span>
         </div>
       </article>
     </section>

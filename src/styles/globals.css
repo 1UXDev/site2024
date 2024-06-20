@@ -107,7 +107,7 @@ h2 {
 }
 
 section {
-  scroll-snap-align: center;
+  scroll-snap-align: start;
 }
 
 /* @media (prefers-color-scheme: dark) {

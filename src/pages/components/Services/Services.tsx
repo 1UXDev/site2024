@@ -7,11 +7,15 @@ import RightSection from "./RightSectionSubNav/RightSection";
 import ServicesCards from "./ServicesCards/ServicesCards";
 import BottomText from "./BottomText/BottomText";
 
-export default function Services() {
+export default function Services({
+  sectionsRef,
+}: {
+  sectionsRef: React.MutableRefObject<any>;
+}) {
   const services = [
     {
       id: 0,
-      navline: "Reliable Experience Strategy",
+      navline: "Evolve Vision to Experience Strategy",
       headline: "Advance beyond Aesthetics",
       description: [
         "Create experiences that resonate with your audience and drive business outcomes in a compliant & manageable way.",
@@ -112,7 +116,13 @@ export default function Services() {
   }
 
   return (
-    <section className={styles.servicesSection}>
+    <section
+      className={styles.servicesSection}
+      id="services"
+      ref={(el) => {
+        sectionsRef.current[2] = el;
+      }}
+    >
       <ServicesCards
         selectedService={selectedService}
         services={services}

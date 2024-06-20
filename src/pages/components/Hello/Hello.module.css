@@ -1,0 +1,31 @@
+.mesh {
+  position: absolute;
+
+  opacity: 0.4;
+  width: 100%;
+  height: 100%;
+  --gradient-color-1: #c16507;
+  --gradient-color-2: #dc373c;
+  /* --gradient-color-3: #de0075; */
+  --gradient-color-3: #b420b6;
+  --gradient-color-4: #1253eb;
+}
+
+.helloContentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  z-index: 3;
+  padding-bottom: 3rem;
+  text-align: center;
+}
+.helloText {
+  padding-bottom: 2rem;
+}
+.devProcessContainer {
+  width: 100%;
+  min-width: 380px;
+}

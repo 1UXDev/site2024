@@ -3,7 +3,11 @@ import styles from "./Hero.module.css";
 import Typewriter from "typewriter-effect";
 import { useSpring, useScroll, animated } from "@react-spring/web";
 
-export default function Hero() {
+export default function Hero({
+  sectionsRef,
+}: {
+  sectionsRef: React.MutableRefObject<any>;
+}) {
   // https://codesandbox.io/p/sandbox/scrolling-wave-b07dmz?file=%2Fsrc%2FApp.tsx%3A70%2C23-70%2C73
   // const { scrollYProgress } = useScroll();
 
@@ -21,7 +25,13 @@ export default function Hero() {
   // });
 
   return (
-    <section className={styles.heroSection}>
+    <section
+      className={styles.heroSection}
+      id="hero"
+      ref={(el) => {
+        sectionsRef.current[0] = el;
+      }}
+    >
       <div className={styles.heroTitle}>
         <h1>CREATE</h1>
 

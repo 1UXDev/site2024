@@ -3,7 +3,8 @@
   flex-flow: row nowrap;
   min-height: 100vh;
   max-height: 100vh;
-  padding: 4rem;
+  /* padding: 4rem; */
+  padding-left: 4rem;
 }
 
 .referenceSection article {
@@ -97,13 +98,15 @@
 .galleryContainer {
   flex: 1;
   overflow: hidden;
+  width: 120%;
+  height: unset;
 }
 
 .imageContainer {
 }
 
 .imageContainer img {
-  object-fit: cover;
+  object-fit: fill;
   border-radius: 12px;
 }
 

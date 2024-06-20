@@ -1,8 +1,8 @@
 .servicesSection {
-  padding: 8% 8% 4%;
+  padding: 6% 12%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: 2fr 1fr;
 
   color: rgb(50, 50, 50);
   position: relative;
@@ -37,8 +37,8 @@
   min-width: 300px;
   min-height: 300px;
 
-  max-width: 50vh;
-  max-height: 50vh;
+  max-width: 60vh;
+  max-height: 60vh;
 
   grid-column: 3;
   grid-row: 1;
