@@ -13,7 +13,7 @@ export default function DevProcess({
   const [isContinuousAnimation, setIsContinuousAnimation] = useState(false);
 
   useEffect(() => {
-    if (activeSection !== "hello") {
+    if (activeSection !== "About") {
       return;
     }
 

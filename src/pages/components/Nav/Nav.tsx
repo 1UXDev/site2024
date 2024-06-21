@@ -2,7 +2,7 @@ import styles from "./Nav.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function Nav() {
+export default function Nav({ activeSection }) {
   const [scroll, setScroll] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,9 @@ export default function Nav() {
   return (
     <nav
       className={`${styles.nav} ${
-        scroll ? styles.navScrollContainer : styles.navContainer
+        activeSection !== "hero"
+          ? styles.navScrollContainer
+          : styles.navContainer
       }`}
     >
       <div className={styles.logo}>
@@ -28,14 +30,18 @@ export default function Nav() {
       </div>
 
       <Link href="/" className={styles.navLink}>
+        About
+      </Link>
+
+      <Link href="/" className={styles.navLink}>
         Services
       </Link>
 
-      <Link href="/about" className={styles.navLink}>
+      <Link href="/" className={styles.navLink}>
         Case Studies
       </Link>
 
-      <Link href="/contact" className={styles.navLink}>
+      <Link href="/" className={styles.navLink}>
         Contact
       </Link>
     </nav>

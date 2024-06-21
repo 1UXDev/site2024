@@ -93,7 +93,7 @@ export default function CaseStudies({
   return (
     <section
       className={styles.referenceSection}
-      id="case-studies"
+      id="Case_Studies"
       ref={(el) => {
         sectionsRef.current[3] = el;
       }}
