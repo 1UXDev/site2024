@@ -1,8 +1,7 @@
 import DevProcess from "./DevProcess";
 import styles from "./Hello.module.css";
 import { useEffect, useState } from "react";
-
-import React from "react";
+import Image from "next/image";
 
 export default function Hello({
   sectionsRef,
@@ -19,7 +18,7 @@ export default function Hello({
   });
 
   useEffect(() => {
-    if (activeSection === "hello") {
+    if (activeSection === "About") {
       (async () => {
         const { Gradient } = await import("whatamesh");
         const gradient = new Gradient();
@@ -40,7 +39,7 @@ export default function Hello({
 
   return (
     <section
-      id="hello"
+      id="About"
       ref={(el) => {
         sectionsRef.current[1] = el;
       }}
@@ -85,8 +84,48 @@ export default function Hello({
           <h2 className={`${styles.helloText}`}>
             I create digital Products <br></br>from Vision to Scale.
           </h2>
+        </div>
+        <div
+          style={{
+            position: "absolute",
 
-          <p>Concept | Design | Prototype | Code</p>
+            bottom: "3rem",
+
+            display: "flex",
+            flexFlow: "row wrap",
+            gap: "1.25rem",
+            margin: "auto",
+            alignItems: "center",
+
+            background: "rgba(255,255,255,0.75)",
+            padding: "0.5rem 2.5rem 0.5rem 0.6rem",
+            borderRadius: "70px",
+            width: "fit-content",
+
+            opacity: animationValues.opacityValue,
+            transform: `translateY(${animationValues.translateY}%)`,
+            transition: "transform 0.75s 1s, opacity 1.25s 1s ease-in-out",
+          }}
+        >
+          <Image
+            src="/portraits/julien_small.png"
+            width={100}
+            height={100}
+            className={styles.portrait}
+            alt="portrait of Julien Leske"
+          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.5rem",
+              textAlign: "left",
+              color: "rgb(50,50,50)",
+            }}
+          >
+            <h3>Julien Leske</h3>
+            <p>Consulting | Design | Code</p>
+          </div>
         </div>
       </div>
     </section>

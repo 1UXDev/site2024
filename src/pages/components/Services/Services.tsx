@@ -118,7 +118,7 @@ export default function Services({
   return (
     <section
       className={styles.servicesSection}
-      id="services"
+      id="Services"
       ref={(el) => {
         sectionsRef.current[2] = el;
       }}

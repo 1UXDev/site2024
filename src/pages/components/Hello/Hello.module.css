@@ -23,9 +23,15 @@
   text-align: center;
 }
 .helloText {
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
 }
 .devProcessContainer {
   width: 100%;
   min-width: 380px;
+}
+.portrait {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

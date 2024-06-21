@@ -56,7 +56,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
+      <Nav activeSection={activeSection} />
       <div className={styles.scrollSnap}>
         <Hero sectionsRef={sectionsRef} />
 
@@ -66,7 +66,10 @@ export default function Home() {
 
         <CaseStudies sectionsRef={sectionsRef} />
       </div>
-      <div className={styles.indicator}>Current Section: {activeSection}</div>
+      📍
+      <div className={styles.indicator}>
+        📍 {activeSection?.split("_").join(" ")}
+      </div>
     </main>
   );
 }
